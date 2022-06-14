@@ -21,6 +21,7 @@ use App\Http\Controllers\BloodtypeController;
 
 
 use App\Http\Controllers\NotificatioController;
+use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -48,6 +49,8 @@ Route::resource('/hworker',HworkerController::class);
 Route::group(['middleware'=>'auth'],function(){
   
     Route::resource('/blood',BloodController::class); 
+
+    Route::resource('session', SessionController::class);
 
 Route::group(['middleware'=>'roles:1'],function(){
   

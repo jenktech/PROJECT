@@ -46,7 +46,7 @@
 														<form action="{{route('donor.destroy', $donor->id)}}"method="POST">
 															@csrf
 														
-														<a href="{{route('donor.edit', $donor->id)}}" class="btn btn-success">Edit</a>
+														<a href="{{route('reception.edit', $donor->id)}}" class="btn btn-success">Start</a>
 													
 														
                                                 </tr>

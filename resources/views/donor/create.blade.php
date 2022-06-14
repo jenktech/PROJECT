@@ -64,7 +64,7 @@
             
             <div class="form-group">
                 <div class="rs-select2 js-select-simple select--no-search">
-                    <select name="" id="region">
+                    <select name="payment_method" id="region">
                         <option selected disabled>Payment means</option>
                         @forelse ($regions as $region)
                             <option value="{{$region->id}}">{{$region->name}}</option>
@@ -79,13 +79,17 @@
             <hr>
             <div class="form-group mt-3 ">
                 <div class="rs-select2 js-select-simple select--no-search">
-                    <select name="district" id="district"> 
+                    <select name="insurance_company" id="district"> 
                         <option selected disabled>No payment mean</option>
                     
                     </select>
                     <div class="select-dropdown"></div>
                 </div>
                 <hr>
+            </div>
+
+            <div class="input-group">
+                <input class="input--style-2" type="text" placeholder="Card Number" name="card_number">
             </div>
         
             {{-- <div class="form-group mt-3 ">

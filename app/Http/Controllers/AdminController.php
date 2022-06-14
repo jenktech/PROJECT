@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Model\Role;
@@ -21,27 +22,27 @@ class AdminController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->hworker){
-           
+        if (Auth::user()->hworker) {
+
             $hospital = auth()->user()->hworker->hospital;
-            $notifies = notify::where('hospital_id',Auth::user()->hworker->hospital_id)->where('status','unread')->count();
-                
-     
-           
-            return view('admin.index',compact('hospital','notifies'));
-        
-    
-    }}
+            $notifies = notify::where('hospital_id', Auth::user()->hworker->hospital_id)->where('status', 'unread')->count();
+
+
+
+            return view('admin.index', compact('hospital', 'notifies'));
+        }
+    }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-         public function create()
-            {     $districts = District::all();
-        return view('admin.create',compact('districts'));
-            }
+    public function create()
+    {
+        $districts = District::all();
+        return view('admin.create', compact('districts'));
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -49,15 +50,16 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request ,Region $regions)
-    {     $request->validate([
-        'name' => 'required'
-        
-        
-    
+    public function store(Request $request, Region $regions)
+    {
+        $request->validate([
+            'name' => 'required'
+
+
+
         ]);
         $regions->create($request->all());
-        return back()->with('success','Region registered successfull');
+        return back()->with('success', 'Region registered successfull');
     }
 
     /**

@@ -10,7 +10,7 @@ class Donor extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'first_name', 'middle_name','last_name','phone','tribe','gender','age', 'address',
+        'first_name', 'middle_name','last_name','phone','tribe','gender','age', 'address', 'payment_method', 'insurance_company', 'card_number'
     ];
     // public function user(){
     //    return  $this->belongsTo(User::class);
@@ -18,5 +18,10 @@ class Donor extends Model
     // public function hospital(){
     //     return  $this->belongsTo(Hospital::class);
     //  }
+
+    public function session()
+    {
+        return $this->hasMany(Session::class);
+    }
     
 }

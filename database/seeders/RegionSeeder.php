@@ -16,15 +16,12 @@ class RegionSeeder extends Seeder
     {   
        
         $regions = [
-
-            ['name' => 'Arusha'],
-            ['name' => 'kilimanjaro'],
-            ['name' => 'Tanga']
-           
+            ['name' => 'Cash'],
+            ['name' => 'Insurance'],           
         ];
         
         foreach($regions as $region){
-            Region::updateOrCreate(['name', $region['name']], $region);
+            Region::create($region);
         }
     }
 }

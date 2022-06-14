@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDonorsTable extends Migration
+class CreateSessionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,18 @@ class CreateDonorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('donors', function (Blueprint $table) {
+        Schema::create('sessions', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name');
-            $table->string('middle_name');
-            $table->string('last_name');
-            $table->string('phone')->unique();
-            $table->string('tribe');
-            $table->string('gender');
-            $table->integer('age');
-            $table->string('address');
+            $table->foreignId('donor_id')->constrained();
+            $table->foreignId('hworker_id')->nullable()->constrained();
+            $table->longText('complaint');
+            $table->longText('diagnosis')->nullable();
+            $table->longText('results')->nullable();
+            $table->longText('pharmacy')->nullable();
             $table->string('payment_method');
             $table->string('insurance_company')->nullable();
             $table->string('card_number')->nullable();
-            
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -38,6 +36,6 @@ class CreateDonorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('donors');
+        Schema::dropIfExists('sessions');
     }
 }

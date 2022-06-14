@@ -22,7 +22,7 @@
         <ul id="sidebarnav" class="pt-4">
             <li class="sidebar-item">
                 <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                    href="{{route('reception.index')}}" aria-expanded="false"><i class="ti-wallet me-1 ms-1"></i>Registered Client</a>
+                    href="{{route('reception.index')}}" aria-expanded="false"><i class="ti-wallet me-1 ms-1"></i>Sessions</a>
                 </a>
             </li>
       

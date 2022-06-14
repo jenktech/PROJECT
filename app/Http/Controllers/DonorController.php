@@ -62,22 +62,22 @@ class DonorController extends Controller
     public function store(Request $request)
 
     {     
+        
         $request->validate([
             'first_name' => 'required',
             'middle_name' => 'required',
             'last_name' => 'required',
-            'age' => 'required|max:65|num',
+            'age' => 'required|max:2',
             'gender' => 'required',
-            'phone' => 'required|digits:10|max:10|starts_with:0',
+            'phone' => 'required|digits:10|starts_with:0',
             'address' => 'required',
             'tribe' => 'required',
-            
-            'age' => 'required|max:2',
-            
+            'payment_method' => 'required',
+            'insurance_company' => 'nullable|required_if:payment_method,2',            
+            'card_number' => 'nullable|required_if:payment_method,2',            
         ],[
             'age.required'=>'jaza mwaka wa kuzaliwa kwa usahihi'
         ]);
-        //   dd($request->middle_name);
           Donor::create($request->all());
           return redirect()->route('home')->with('success',' Congratulation your registration  succecfully.');
     }

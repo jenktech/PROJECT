@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Donor;
+use App\Models\Region;
+use App\Models\District;
+use App\Models\Hworker;
 use Illuminate\Http\Request;
 
 class ReceptionController extends Controller
@@ -61,7 +64,15 @@ class ReceptionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $donor = Donor::findOrFail($id);
+
+        $regions = Region::all();
+        
+        $districts = District::all();
+
+        $doctors  = Hworker::all();
+
+        return view('session.start', compact('donor', 'regions', 'districts', 'doctors'));
     }
 
     /**
