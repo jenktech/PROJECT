@@ -34,40 +34,22 @@
                 
                 
             <div class="input-group">
-                <input class="input--style-2" type="text" placeholder="Last name" name="last_name"required>
+                <input class="input--style-2" type="text" placeholder="middle name" name="middle_name"required>
             </div>
             <div class="input-group">
             </div>
-            <input class="input--style-2" type="text" placeholder="Blood group A+" name="A"required>
+            <input class="input--style-2" type="text" placeholder="last name" name="last_name"required>
             <div class="input-group">
             </div>
-            <input class="input--style-2" type="text" placeholder="Blood group  B+" name="B"required>
+          
             <div class="input-group">
-            </div>
-            <input class="input--style-2" type="text" placeholder="Blood group  AB+" name="AB"required>
-            <div class="input-group">
-            </div>
-            <input class="input--style-2" type="text" placeholder="Blood group  A-" name="An"required>
-            <div class="input-group">
+                <input class="input--style-2" type="text" placeholder="User name" name="user_name"required>
             </div>
             <div class="input-group">
-                <input class="input--style-2" type="text" placeholder="Blood group  B-" name="Bn"required>
+                <input class="input--style-2" type="text" placeholder="phone number" name="phone_no"required>
             </div>
 
-            <div class="input-group">
-                <input class="input--style-2" type="text" placeholder="Blood group  O-" name="On"required>
-            </div>
-            <div class="input-group">
-                <input class="input--style-2" type="text" placeholder="Blood group  O+" name="O"required>
-            </div>
-            <div class="input-group">
-                <input class="input--style-2" type="text" placeholder="Blood group  AB-" name="ABn"required>
-            </div>
-            <div class="input-group">
-                <input class="input--style-2" type="text" placeholder="Hospital name" name="name"required>
-            </div>
-
-                <div class="form-group">
+                {{-- <div class="form-group">
                 <div >
                     <select name="region_id" id="region" class="form-control">
                         <option selected disabled>Region</option>
@@ -79,7 +61,7 @@
                         
                     </select>
                     <div class="select-dropdown"></div>
-                </div>
+                </div> 
             </div>
             <hr>
             <div class="form-group mt-3 ">
@@ -89,9 +71,9 @@
                     
                     </select>
                     <div class="select-dropdown"></div>
-                </div>
-                <hr>
-            </div>
+                </div> --}}
+                {{-- <hr>
+            </div> --}}
             <div class="p-t-30">
                 <button class="btn btn--radius btn--green" type="submit">Submit</button>
             </div>

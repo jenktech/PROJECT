@@ -17,6 +17,9 @@ class CreateSessionsTable extends Migration
             $table->id();
             $table->foreignId('donor_id')->constrained();
             $table->foreignId('hworker_id')->nullable()->constrained();
+            $table->string('weight')->nullable();
+            $table->string('blood_pressure')->nullable();
+            $table->string('height')->nullable();
             $table->longText('complaint');
             $table->longText('diagnosis')->nullable();
             $table->longText('results')->nullable();

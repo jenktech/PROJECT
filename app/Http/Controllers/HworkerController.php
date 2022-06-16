@@ -41,27 +41,24 @@ class HworkerController extends Controller
     {   
         $request->validate([
             'first_name' => 'required',
+            'middle_name' => 'required',
+            
             'last_name' => 'required',
-            'A' => 'required|max:7000|numeric',
-            'B' => 'required|max:7000|numeric',
-            'AB' => 'required|max:7000|numeric',
-            'An' => 'required|max:7000|numeric',
-            'Bn' => 'required|max:7000|numeric',
-            'On' => 'required|max:7000|numeric',
-            'O' => 'required|max:7000|numeric',
-            'ABn' => 'required|max:7000|numeric',
-             'name'=>'required|',
+            'phone_no'=>'required|',
+             'user_name'=>'required|',
            
             
         ],[
             'name'=>' name already exist'
         ]);
        DB::transaction(function () use($hworkers, $request){
-        $hospital = Hospital::create(['name' => $request->name, 'district_id' => $request->district_id, 'A' => $request->A, 'B' => $request->B,'Bn' => $request->Bn,'AB' => $request->AB,'O' => $request->O,'On' => $request->On,'An' => $request->An,'ABn' => $request->ABn]);
-
-        $hospital->hworker()->create(['first_name' => $request->first_name, 'last_name'=> $request->last_name,'user_id' => auth()->id()]);
+        // $hospital = Hospital::create(['name' => $request->name, 'district_id' => $request->district_id, 'A' => $request->A, 'B' => $request->B,'Bn' => $request->Bn,'AB' => $request->AB,'O' => $request->O,'On' => $request->On,'An' => $request->An,'ABn' => $request->ABn]);
+        
+        // Hworkers::create(['first_name' => $request->first_name, 'middle_name'=> $request->middle_name,'last_name'=> $request->last_name,'user_name'=> $request->user_name,'phone_no'=> $request->phone_no,'user_id' => auth()->id()]);
         
        });
+       Hworker::create($request->all());
+      
         return redirect()->route('hospital.index')->with('success',' registration  succecfully.');
     }
 

@@ -10,7 +10,7 @@ class Hospital extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name','district_id', 'A','B','AB','An','Bn','On','O','ABn',
+        ' first_name','middle_name', 'last_name','phone_no','user_name'
     ];
 
     public function district(){

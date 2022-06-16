@@ -89,6 +89,16 @@
                 <input class="input--style-2" type="text" placeholder="Card Number" name="card_number" value="{{ $donor->card_number }}">
             </div>
 
+            <div class="input-group">
+                <input class="input--style-2" type="text" placeholder="weight" name="weight">
+            </div>
+            <div class="input-group">
+                <input class="input--style-2" type="text" placeholder="blood_pressure" name="blood_pressure">
+            </div>
+            <div class="input-group">
+                <input class="input--style-2" type="text" placeholder="height" name="height">
+            </div>
+
             <div class="row row-space">
                 <div class="col-12 mt-4">
                     <div class="input-group">

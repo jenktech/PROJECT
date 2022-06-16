@@ -14,8 +14,8 @@
 
     <li class="sidebar-item"> 
         <a class="sidebar-link waves-effect waves-dark sidebar-link"
-            href="{{route('hospital.create')}}" aria-expanded="false"><i class="ti-wallet me-1 ms-1"></i>
-            Donor request</a>
+            href="{{route('hospital.index')}}" aria-expanded="false"><i class="ti-wallet me-1 ms-1"></i>
+            patient request</a>
         </a>
     </li>
 

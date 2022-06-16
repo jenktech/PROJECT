@@ -1,117 +1,80 @@
 @extends('layouts.main')
-
-@section('title', 'Home')
-    
-@section('content')
-
-    <div class="row">
-       
-
-    </div>
-
-       @if(Auth::user()->hworker)
-       <div class="row">
-            <div class="col-md-12">
-                <div class="card card-hover">
-                    <div class="box bg-white text-center">
-                    <h1 class="font-light text-danger"></h1>
-                    <a class="" href="{{route('blood.index')}}" >
-                        <span class="fa-stack fa-3x ">
-                            <i class="fa fa-circle fa-stack-2x"> </i>
-                            <i class="fa fa-bell fa-stack-1x fa-inverse" >{{$notifies}}</i>
-                        </span>
-                    </a>
-                    </div>
-                </div>
-            </div>
-       </div>
-        <!-- Column -->    
-       <div class="row">
-            <div class="col-md-3">
-                <div class="card card-hover">
-                    <div class="box bg-success text-center">
-                        <h1 class="font-light text-white">A+</h1>
-                        <h6 class="text-white"> unit available :{{$hospital->A}}mill</h6>
-                    </div>
-                </div>
-            </div>
-            <!-- Column -->
-            <div class="col-md-3">
-                <div class="card card-hover">
-                    <div class="box bg-warning text-center">
-                        <h1 class="font-light text-white">B+</i></h1>
-                        <h6 class="text-white"> unit:{{$hospital->B}}mill</h6>
-                    </div>
-                </div>
-            </div>
-            <!-- Column -->
-            <div class="col-md-3">
-                <div class="card card-hover">
-                    <div class="box bg-danger text-center">
-                        <h1 class="font-light text-white">AB+</i></h1>
-                        <h6 class="text-white">unit:{{$hospital->AB}}mill</h6>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="card card-hover">
-                    <div class="box bg-warning text-center">
-                        <h1 class="font-light text-white">AB-</i></h1>
-                        <h6 class="text-white"> unit:{{$hospital->ABn}}mill</h6>
-                    </div>
-                </div>
-            </div>
-       </div>
-       
-    <div class="row">
-        
-        <!-- Column -->
-        <div class="col-md-3">
-            <div class="card card-hover">
-                <div class="box bg-info text-center">
-                    <h1 class="font-light text-white">O+</i></h1>
-                    <h6 class="text-white">unit:{{$hospital->O}}mill</h6>
-                </div>
-            </div>
-        </div>
-    
-        <!-- Column -->
-        <div class="col-md-3">
-            <div class="card card-hover">
-                <div class="box bg-danger text-center">
-                    <h1 class="font-light text-white">O-</i></h1>
-                    <h6 class="text-white">unit:{{$hospital->On}}mill</h6>
-                </div>
-            </div>
-        </div>
-
-        <!-- Column -->
-        <div class="col-md-3">
-            <div class="card card-hover">
-                <div class="box bg-info text-center">
-                    <h1 class="font-light text-white">A-</i></h1>
-                    <h6 class="text-white">unit:{{$hospital->An}}mill</h6>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="card card-hover">
-                <div class="box bg-info text-center">
-                    <h1 class="font-light text-white">B-</i></h1>
-                    <h6 class="text-white">unit:{{$hospital->On}}mill</h6>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    </ul>
-    @endif    
-                
+@section('title','Requesting from other hospital')
+	
+@section('styles')
 
 @endsection
+@section('content')
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+ 
+    
+  
+                      
+                <div class="container-fluid">
+                    <!-- ============================================================== -->
+                    <!-- Start Page Content -->
+                  
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Basic Datatable</h5>
+                                    <div class="table-responsive">
+                                        <table id="zero_config" class="table table-striped table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>User Id</th>
+                                                    <th>Role name</th>
+                                                    <th>Email</th>
+                                                    <th>Full name</th>
+                                                    <th>Start date</th>
+                                                    <th>Action </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+													@foreach ($donors as $donor)
+			
+                                                    <td>{{$donor->id}}</td>
+                                                    <td>{{$donor->first_name}} {{$donor->last_name}} </td>
+                                                    <td>{{$donor->phone}}</td>
+                                                    <td>{{$donor->phone}}</td>
+                                                    
+                                                    <td>{{$donor->updated_at}}</td>
+                                                    <td>
+														<form action="{{route('donor.destroy', $donor->id)}}"method="POST">
+															@csrf
+														
+														<a href="{{route('hospital.edit', $donor->id)}}" class="btn btn-success">Start</a>
+													
+														
+                                                </tr>
+												@endforeach
+                                                
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <th>User Id</th>
+                                                    <th>Role</th>
+                                                    <th>Email</th>
+                                                    <th>Name</th>
+                                                    <th>Start date</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+@endsection
+			
+@section('script')
 
-</li>
-            
-               
+@endsection
+	
+
