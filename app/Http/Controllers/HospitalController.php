@@ -14,35 +14,13 @@ use App\Models\Session;
 use App\Models\User;
 class HospitalController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {  
+        $sessions = Session::all();
+        $sessions->load('donor');
         
-       
-        $donors = Donor::all();
-        //  if(Auth::user()->hworker){
-           
-        //     $hospital = auth()->user()->hworker->hospital;
-        //     $notifies = notify::where('hospital_id',Auth::user()->hworker->hospital_id)->where('status','unread')->count();
-                
-           
-           
-        //     return view('hospital.index',compact('hospital','notifies','donors'));
-          
-        //  }
-            $sessions = Session::all();
-        
-  
-         return view('hospital.index',compact('donors','sessions'));
-        
-      
-            
-        
-        
+        return view('hospital.index',compact('sessions'));        
     }
 
     /**
@@ -82,39 +60,13 @@ class HospitalController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function  edit(Request $request)
+
+    public function  edit(Request $request,  $session)
     {
-       $data =  $request->validate([
-            'first_name' => 'required',
-            'middle_name' => 'required',
-            'last_name' => 'required',
-            'age' => 'required',
-            'gender' => 'required',
-            'phone' => 'required|digits:10|starts_with:0',
-            'payment_method' => 'required',
-            'insurance_company' => 'nullable|required_if:payment_method,2',            
-            'card_number' => 'nullable|required_if:payment_method,2', 
-            'complaint' => 'required',
-            'hworker_id' => 'nullable|required_if:payment_method,2'
-        ]);
+        $session = Session::findOrFail($session);
 
-        $donor = Donor::where('phone', $data['phone'])->firstOrFail();
-
-        $donor->session()->create([
-            'complaint' => $data['complaint'],
-            'payment_method' => $data['payment_method'],
-            'insurance_company' => $data['insurance_company'],
-            'card_number' => $data['card_number'],
-            'status' => 'On Progress',
-        ]);
-
-        return redirect()->route('hospital.index')->with('success', 'Session Started');
+        $session->load('donor');
+        return view('hospital.edit', compact('session'));
     }
     
 
@@ -127,20 +79,18 @@ class HospitalController extends Controller
      */
     public function update(Request $request, $id)
     {
-       
-        $donors=Donor::find($id);
-        $donors->weight = $request->weight;
-        $donors->blood_pressure = $request->blood_pressure;
-        $donors->blood_type = $request->blood_type;
-        $donors->save();
+        $session = Session::findOrFail($id);
 
-        $hospital = Hospital::find($request->hospital_id);
+        $request->validate([
+            'diagnosis' => 'required'
+        ]);
         
-        $hospital->increment($request->blood_type, 450);
+        $session->update([
+            'hworker_id' => auth()->id(),
+            'diagnosis' => $request->diagnosis,
+        ]);
         
-
-        return redirect()->route('hospital.create');
-       
+        return redirect()->route('hospital.index')->with('success','Diagnosis recorded');
     }
 
     /**

@@ -23,7 +23,7 @@ class CreateSessionsTable extends Migration
             $table->longText('complaint');
             $table->longText('diagnosis')->nullable();
             $table->longText('results')->nullable();
-            $table->longText('pharmacy')->nullable();
+            $table->longText('prescription')->nullable();
             $table->string('payment_method');
             $table->string('insurance_company')->nullable();
             $table->string('card_number')->nullable();

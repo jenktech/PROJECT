@@ -9,7 +9,7 @@ class Session extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['first_name', 'middle_name', 'last_name', 'gender', 'age', 'payment_method', 'insurance_company', 'card_number', 'complaint', 'hworker_id', 'weight','blood_pressure','height','status'];
+    protected $fillable = ['donor_id', 'hworker_id', 'payment_method', 'insurance_company', 'card_number', 'complaint', 'hworker_id', 'weight','blood_pressure','height','status', 'diagnosis', 'results', 'prescription'];
     public function hworker()
     {
         return $this->belongsTo(Hworker::class);

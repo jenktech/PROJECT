@@ -18,28 +18,29 @@
         @include('admin.info')
         <h2 class="title">Client details</h2>
 
-        <form method="POST" action="{{route('session.store')}}">
+        <form method="POST" action="{{route('hospital.update', $session->id)}}">
             @csrf
+            @method('PATCH')
             <div class="input-group class=" wrap-input100 validate-input m-b-26" data-validate="Username is required">
 
-                <input class="input--style-2" type="text" placeholder="First name" name="first_name" value="{{ $donors->first_name }}">
+                <input class="input--style-2" type="text" placeholder="First name" name="first_name" value="{{ $session->donor->first_name }}">
             </div>
 
             <div class="input-group">
-                <input class="input--style-2" type="text" placeholder="middle name" name="middle_name" value="{{ $donors->middle_name }}">
+                <input class="input--style-2" type="text" placeholder="middle name" name="middle_name" value="{{ $session->donor->middle_name }}">
             </div>
             <div class="input-group">
-                <input class="input--style-2" type="text" placeholder="Last name " name="last_name" value="{{ $donors->last_name }}">
+                <input class="input--style-2" type="text" placeholder="Last name " name="last_name" value="{{ $session->donor->last_name }}">
             </div>
             <div class="input-group">
-                <input class="input--style-2" type="text" placeholder="Phone number" name="phone" value="{{ $donors->phone }}">
+                <input class="input--style-2" type="text" placeholder="Phone number" name="phone" value="{{ $session->donor->phone }}">
 
             </div>
 
             <div class="row row-space">
                 <div class="col-6">
                     <div class="input-group">
-                        <input class="input--style-2" type="text" placeholder="Age" name="age" value="{{ $donors->age }}">
+                        <input class="input--style-2" type="text" placeholder="Age" name="age" value="{{ $session->donor->age }}">
 
                     </div>
                 </div>
@@ -48,25 +49,26 @@
                         <div class="rs-select2 js-select-simple select--no-search">
                             <select name="gender">
                                 <option disabled="disabled" selected="selected">Gender</option>
-                                <option value="male" {{ $donors->gender == 'male' ? 'selected' : '' }}>Male</option>
-                                <option value="female" {{ $donors->gender == 'female' ? 'selected' : '' }}>Female</option>
-
-
+                                <option value="male" {{ $session->donor->gender == 'male' ? 'selected' : '' }}>Male</option>
+                                <option value="female" {{ $session->donor->gender == 'female' ? 'selected' : '' }}>Female</option>
                             </select>
                             <div class="select-dropdown"></div>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <div class="input-group">
-                <input class="input--style-2" type="text" placeholder="Card Number" name="card_number" value="{{ $donors->card_number }}">
-            </div>
+        
 
             <div class="row row-space">
                 <div class="col-12 mt-4">
                     <div class="input-group">
-                        <textarea class="input--style-2 form-control p-2" type="text" placeholder="Complaint" rows="5" name="complaint" value="{{$sessions->complaints }}">></textarea>
+                        <textarea class="input--style-2 form-control p-2" type="text" placeholder="Complaint" rows="5" name="complaint" value="{{$session->complaint }}"></textarea>
+                    </div>
+                </div>
+
+                <div class="col-12 mt-4">
+                    <div class="input-group">
+                        <textarea class="input--style-2 form-control p-2" type="text" placeholder="diagnosis" rows="5" name="diagnosis" value="{{$session->diagnosis }}"></textarea>
                     </div>
                 </div>
 
